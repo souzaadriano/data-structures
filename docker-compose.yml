@@ -1,0 +1,22 @@
+services:
+  structure-db:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: pg1234
+      PGDATA: /data/postgres
+    networks:
+      - base-network
+    volumes:
+      - structure-db-volume:/var/lib/postgresql/data
+    ports:
+      - "5455:5432"
+    hostname: database
+
+networks:
+  base-network:
+    driver: bridge
+
+volumes:
+  structure-db-volume:
